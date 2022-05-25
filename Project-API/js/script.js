@@ -4,7 +4,11 @@ const loadingElement = document.querySelector("#loading")
 
 const postsContainer = document.querySelector("#posts-container")
 
+// GeT ID FROM url
 
+
+const urlSearchParams = new URLSearchParams(window.location.search)
+const postId = urlSearchParams.get("id")
 
 // Get all posts
 
@@ -23,10 +27,10 @@ async function getAllPosts() {
         const body = document.createElement("p")
         const link = document.createElement("a")
 
-        title.innerText = post.tiltle;
+        title.innerText = post.title;
         body.innerText = post.body;
-        link.innerText = "Read more"
-        link.setAttribute("herf", `/post.html?=id${post.id}`);
+        link.innerText = "Ler"
+        link.setAttribute("href", `/Project-API/post.html?id=${post.id}`);
 
         div.appendChild(title)
         div.appendChild(body)
@@ -40,4 +44,8 @@ async function getAllPosts() {
 
 }
 
-getAllPosts();
+if (!postId) {
+    getAllPosts();
+} else {
+    console.log(postId);
+}
